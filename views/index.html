@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progreader</title>
+  <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+
+  <script>
+
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+      ':35729/livereload.js?snipver=1"></' + 'script>')
+
+  </script>
+
+  <header class="bg-stone-900 px-4 py-2 flex justify-between items-center">
+
+    <h2 class="font-bold text-3xl text-white">ProgReader</h2>
+
+    <label class="text-white font-bold text-xl">
+
+      Materia:
+      <select id="materiaSelector" class="text-black">
+        <!-- Auto options -->
+      </select>
+
+    </label>
+
+  </header>
+
+  <main id="main" class="w-full flex min-h-screen">
+
+    <article class="min-w-max">
+
+      <form id="createMateria" method="POST" action="/api/materia"
+        class="text-white bg-stone-700 p-4 font-semibold flex flex-col min-h-max gap-2">
+
+        <h4 class="text-2xl underline">Crear nueva materia:</h4>
+
+        <label for="materia" class="flex flex-col">*Materia:</label>
+        <input name="materia" type="text" required class="text-black rounded outline-none px-2">
+
+        <button class="rounded-xl border-2 border-black w-max text-xl font-bold mx-auto px-2">Crear</button>
+
+      </form>
+
+      <form id="createForm" method="POST" action="/api/book"
+        class="text-white bg-stone-700 p-4 font-semibold flex flex-col min-h-max gap-2">
+
+        <h4 class="text-2xl underline">Crear nuevo libro:</h4>
+
+        <label for="titulo" class="flex flex-col">*Título:</label>
+        <input name="titulo" type="text" required class="text-black rounded outline-none px-2">
+
+        <label for="anio" class="flex flex-col">*Fecha de publicación:</label>
+        <input name="anio" type="text" required maxlength="10" class="text-black rounded outline-none px-2">
+
+        <label for="autor" class="flex flex-col">*Autor:</label>
+        <input name="autor" type="text" required class="text-black rounded outline-none px-2">
+
+        <label for="editorial" class="flex flex-col">*Editorial:</label>
+        <input name="editorial" type="text" required class="text-black rounded outline-none px-2">
+
+        <label for="en" class="flex flex-col">En:</label>
+        <input name="en" type="text" class="text-black rounded outline-none px-2">
+
+        <label for="capitulos" class="flex flex-col">Capítulos:</label>
+        <input name="capitulos" type="text" class="text-black rounded outline-none px-2">
+
+        <label for="paginas" class="flex flex-col">Páginas:</label>
+        <input name="paginas" type="text" class="text-black rounded outline-none px-2">
+
+        <label for="unidad" class="flex flex-col">*Unidad:</label>
+        <input name="unidad" required type="number" min="0" class="text-black rounded outline-none px-2" min="0">
+
+        <label for="condicion" class="flex flex-col">*Condición:</label>
+        <select name="condicion" required class="text-black rounded outline-none px-2">
+          <option value="Obligatorio">Obligatorio</option>
+          <option value="Ampliatorio">Ampliatorio</option>
+        </select>
+
+        <input id="materia_id_input" name="materia_id" type="hidden" value="">
+        <small class="text-center">* (requerido)</small>
+        <button class="rounded-xl border-2 border-black w-max text-xl font-bold mx-auto px-2">Crear</button>
+
+      </form>
+
+    </article>
+
+    <article id="booksDiv" class="grid grid-cols-3 gap-4 m-2 p-2 max-w-max auto-rows-max auto-cols-fr">
+      <!-- Auto cards -->
+    </article>
+  </main>
+
+  <script src="/js/index.js"></script>
+</body>
+
+</html>

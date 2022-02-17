@@ -4,8 +4,9 @@
   "description": "CRUD para programas de universidad",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon server.js"
+    "dev": "npx nodemon server.js",
+    "tailwind": "npx tailwindcss -i ./static/css/tailwind.css -o ./static/css/index.css --watch",
+    "livereload": "livereload ./views/index.html"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
   }
 }
