@@ -25,22 +25,37 @@ const api = app => {
 
   router.get('/read/books/:id', async (req, res) => {
     const { id } = req.params
-    const books = await bookServices.readById(id)
+    const books = await bookServices.readByMateria(id)
     books.success
       ? res.json({ books: books.response })
       : res.json({ success: false, books })
   })
 
+  router.get('/read/book/:id', async (req, res) => {
+    const { id } = req.params
+    const book = await bookServices.readByBook(id)
+    book.success
+      ? res.json({ book: book.response[0] })
+      : res.json({ success: false, book })
+  })
+
   router.post('/book', async (req, res) => {
     const data = req.body
     const book = await bookServices.create(data)
-    res.redirect('/')
+    return res.redirect('/')
+  })
+
+  router.post('/book/:id', async (req, res) => {
+    const { id } = req.params
+    const data = req.body
+    const response = await bookServices.update(data, id)
+    return res.redirect('/')
   })
 
   router.post('/materia', async (req, res) => {
     const data = req.body
     const materia = await materiaServices.create(data)
-    res.redirect('/')
+    return res.redirect('/')
   })
 
   router.delete('/book/:id', async (req, res) => {
@@ -48,6 +63,7 @@ const api = app => {
     const response = await bookServices.delete(id)
     return res.redirect('/')
   })
+
 }
 
 module.exports = api

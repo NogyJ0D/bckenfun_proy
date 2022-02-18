@@ -19,7 +19,6 @@ const query = (sql, data) => {
 }
 
 const insert = async (table, data) => {
-  console.log(data)
   try {
     await query(`INSERT INTO ${table}(??) VALUES(?)`, [
       Object.keys(data),
@@ -27,17 +26,26 @@ const insert = async (table, data) => {
     ])
     return { success: true, data }
   } catch (err) {
-    return {success: false, err }
+    return { success: false, err }
   }
 }
 
 const del = async (table, id) => {
   try {
-    await query(`DELETE FROM ${table} WHERE id = ?`, [id])
-    return { success: true, id }
+    await query(`DELETE FROM ${table} WHERE id = ${id}`)
+    return { success: true, id  }
   } catch (err) {
-    return {success: false, err }
+    return { success: false, err  }
   }
 }
 
-module.exports = { query, insert, del }
+const update = async (table, data, id) => {
+  try {
+    await query(`UPDATE ${table} SET ? WHERE id = ${id}`, [data])
+    return { success: true }
+  } catch (err) {
+    return { success: false, err }
+  }
+}
+
+module.exports = { query, insert, del, update }
